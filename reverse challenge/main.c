@@ -108,7 +108,7 @@ int main(int argc, char* argv[]) {
         printf("You need to give exactly 2 args, mesugaloot\n");
         return -1;
     }
-    if (strcmp(argv[1], "\"Impossible? check my name\" - Kim Possible\n") != 0)
+    if (strcmp(argv[1], "\"Impossible? check my name\" - Kim Possible") != 0)
     {
         printf("You need to give the correct input, mesugalooot\n");
         return -1;
