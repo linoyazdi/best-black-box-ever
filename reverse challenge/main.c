@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
 
@@ -116,7 +115,7 @@ int main() {
         return -1;
     }
     free(my_input);
-    if(check_correct_password(encrypted_input, correct_encrypted_password) == true)
+    if(strcmp(encrypted_input, correct_encrypted_password) == 0)
     {
         print_success();
     }
