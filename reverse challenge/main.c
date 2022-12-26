@@ -105,12 +105,15 @@ void print_success() {
 int main(int argc, char* argv[]) {
     if (argc != 2)
     {
+        printf("You need to give exactly 2 args, msugaloot\n");
         return -1;
     }
     if (strcmp(argv[1], "\"Impossible? check my name\" - Kim Possible\n") != 0)
     {
+        printf("You need to give the correct input, mesugalooot\n");
         return -1;
     }
+    printf("You passed the first part!\n");
     // helper_create_password(CORRECT_PASSWORD);
     char* correct_encrypted_password = "\x19MP\x0eZ\tNF\x18GN\t\x1b\t\x1c]FY\tD\x1a\x08`]\x0eZ\t^A\x1d]\t`\tMF\tHGM\tGFK";
     char* my_input = get_input();
@@ -130,7 +133,7 @@ int main(int argc, char* argv[]) {
     }
     else
     {
-        printf("Failed, try again\n");
+        printf("Failed, try again, mesugaloooot\n");
     }
     free(encrypted_input);
     return 0;
