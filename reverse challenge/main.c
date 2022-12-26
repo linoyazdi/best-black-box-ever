@@ -98,7 +98,8 @@ void print_success() {
     }
     printf("\"It's not the same when I rant to myself.\" - Dr. Drakken\n\n");
     printf("Well done! We found an encrypted file on the intruder's phone. \n");
-    printf("Your mission, if you choose to accept it, is to decrypt the following message:\n");
+    printf("Your mission, if you choose to accept it, is to decrypt a message\n");
+    printf("Remember, EVERYTHING IS POSSIBLE (mesugaloot)\n");
 }
 
 
