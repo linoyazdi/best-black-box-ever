@@ -105,7 +105,7 @@ void print_success() {
 int main(int argc, char* argv[]) {
     if (argc != 2)
     {
-        printf("You need to give exactly 2 args, msugaloot\n");
+        printf("You need to give exactly 2 args, mesugaloot\n");
         return -1;
     }
     if (strcmp(argv[1], "\"Impossible? check my name\" - Kim Possible\n") != 0)
