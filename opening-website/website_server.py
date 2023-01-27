@@ -1,18 +1,27 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import scapy.all as scapy
 from threading import Thread
 import time
+import argparse
 
-app = Flask("test")
+app = Flask("Kim's Website", static_folder="./static", template_folder='./templates')
 MESSAGE = "hello"
 
 
+def custom_message():
+    return MESSAGE
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--port', '-p', type=str, required=True)
+    args = parser.parse_args()
+    return args.port
+
+
 def send_packet(dst_ip, dst_port, src_port):
-    pkt = scapy.IP(dst=dst_ip) / scapy.TCP(sport=int(src_port), dport=int(dst_port))  / scapy.Raw(MESSAGE) 
-    pkt.show()
-    print(pkt.build())
-    time.sleep(1)
-    scapy.sendp(pkt, iface='wlan0')
+    pkt = scapy.Ether() / scapy.IP(dst=dst_ip) / scapy.TCP(sport=int(src_port), dport=int(dst_port))  / scapy.Raw(custom_message())
+    scapy.sendp(pkt)
 
 
 @app.route("/")
@@ -20,9 +29,11 @@ def index():
     dst_ip = request.environ['REMOTE_ADDR']
     dst_port = request.environ['REMOTE_PORT']
     src_port = request.environ['SERVER_PORT']
-    print(dst_ip, dst_port, src_port)
     t = Thread(target=lambda: send_packet(dst_ip, dst_port, src_port))
     t.start()
-    return "yo"
+    return render_template("kimsite.html")
 
-app.run(host='0.0.0.0', port=3030)
+
+if __name__ == "__main__":
+    port = parse_arguments()
+    app.run(host='0.0.0.0', port=port)
