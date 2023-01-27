@@ -24,7 +24,7 @@ def convert_to_scapy(raw_packet):
 def pkt_callback(pkt, ip):
     new_pkt = convert_to_scapy(pkt.build())
     if new_pkt['IP'].dst == ip:
-        out_pkt = scapy.Ether(dst=new_pkt['Ether'].src) / scapy.IP(dst=new_pkt['IP'].src) / scapy.ICMP(type=RESPONSE_TYPE, id=new_pkt['ICMP'].id, seq=new_pkt['ICMP'].seq) / scapy.Raw(base64.encodebytes(NEXT_LEVEL_MESSAGE))
+        out_pkt = scapy.Ether(dst=new_pkt['Ether'].src) / scapy.IP(dst=new_pkt['IP'].src) / scapy.ICMP(type=RESPONSE_TYPE, id=new_pkt['ICMP'].id, seq=new_pkt['ICMP'].seq) / scapy.Raw(base64.encodebytes(NEXT_LEVEL_MESSAGE)) / new_pkt
         scapy.sendp(out_pkt)
 
 
