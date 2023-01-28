@@ -3,13 +3,18 @@ import scapy.all as scapy
 from threading import Thread
 import time
 import argparse
+from consts import KIM_POSSIBLE_SONG, RICK_ROLL
+from random import randint
 
 app = Flask("Kim's Website", static_folder="./static", template_folder='./templates')
-MESSAGE = "hello"
-
+SONGS = [KIM_POSSIBLE_SONG, RICK_ROLL]
+URL = ""
 
 def custom_message():
-    return MESSAGE
+    song = SONGS[randint(0,1)]
+    song_lines = song.split("\n")
+    song_lines.insert(randint(0, len(song_lines) - 1), URL)
+    return "\n".join(song_lines)
 
 
 def parse_arguments():
