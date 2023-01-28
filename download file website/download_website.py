@@ -24,4 +24,4 @@ def download_file():
 if __name__ == '__main__':
 	path, port = parse_arguments()
 	GLOBALS['path'] = path
-	app.run(port=port)
+	app.run(host='0.0.0.0', port=port)
